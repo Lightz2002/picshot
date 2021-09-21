@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PhotoGrid from "./components/PhotoGrid";
+import PhotoGridProvider from "./components/PhotoGridContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <PhotoGridProvider>
+      <Router>
+        <div className="app">
+          <Header />
+          <Main />
+          <Switch>
+            <Route
+              path="/summer"
+              exact
+              render={(props) => <PhotoGrid {...props} tag="summer" />}
+            />
+            <Route
+              path="/mountain"
+              render={(props) => <PhotoGrid {...props} tag="mountain" />}
+            />
+            <Route
+              path="/leave"
+              render={(props) => <PhotoGrid {...props} tag="leave" />}
+            />
+          </Switch>
+        </div>
+      </Router>
+    </PhotoGridProvider>
   );
 }
 

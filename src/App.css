@@ -1,38 +1,205 @@
-.App {
+:root {
+  --primary-color: #0046a2;
+  --lighter-primary-1: #336bb5;
+  --lighter-primary-2: #4d7ebe;
+  --lighter-primary-3: #99b5da;
+  --lighter-primary-4: #b3c8e3;
+  --lighter-primary-5: #e6edf6;
+  --white: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.app {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background: var(--white);
   min-height: 100vh;
+  padding: 4rem;
+}
+
+.app__header-logo {
+  max-width: 25rem;
+}
+
+.app__form-container,
+.app__tags-container {
+  max-width: 30rem;
+}
+
+.app__header-logo {
+  margin-bottom: 4rem;
+}
+
+.app__form-container {
+  position: relative;
+  margin: auto;
+}
+
+.app__form-input,
+.app__form-search {
+  border-radius: 4rem;
+  border-width: 0.1rem;
+}
+
+.app__form-input {
+  padding: 1.2rem;
+  border-right: none;
+  width: 100%;
+}
+
+.app__form-input:focus {
+  outline: none;
+  box-shadow: 0 0.3rem 3rem rgba(10, 5, 0, 0.2);
+  border-width: 0.2rem;
+  border-color: var(--primary-color);
+}
+
+.app__form-search {
+  padding: 1.3rem 2.4rem;
+  border: none;
+  background: var(--primary-color);
+  color: var(--white);
+  position: absolute;
+  right: 0;
+  border-left: none;
+}
+
+.app__form-search:hover,
+.app__form-search:active {
+  cursor: pointer;
+}
+
+.app__form-search:hover {
+  background: var(--lighter-primary-1);
+}
+
+.app__form-search:active {
+  background: var(--lighter-primary-2);
+}
+
+.app__tags-container {
+  margin: 4rem auto;
+}
+
+.app__tags-list {
   display: flex;
-  flex-direction: column;
+  justify-content: space-evenly;
+  list-style: none;
+}
+
+.app__tags-list-item {
+  user-select: none;
+  background: var(--lighter-primary-5);
+  padding: 1.2rem;
+  min-width: 8rem;
+  border-radius: 4rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.app__tags-list-item:hover,
+.app__tags-list-item:active {
+  cursor: pointer;
+}
+
+.app__tags-list-item:hover {
+  background: var(--lighter-primary-3);
+}
+
+.app__tags-list-item:active,
+.active {
+  background: var(--lighter-primary-1);
+  color: var(--lighter-primary-5);
+}
+
+.app__photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  justify-items: center;
+  gap: 2rem;
+  max-width: 70%;
+  margin: auto;
+}
+
+.app__photo-grid-img-link {
+  overflow: hidden;
+  display: block;
+  position: relative;
+  height: 100%;
+}
+
+.app__photo-grid-img-link:hover .app__photo-grid-img {
+  transform: scale(1.2);
+}
+
+.app__photo-grid-img-link:hover .app__photo-grid-img--overlay {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.app__photo-grid-img-link:hover .app__photo-grid-img--overlay-title {
+  display: block;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.app__photo-grid-img--overlay,
+.app-photo-grid-img--overlay-title {
+  display: none;
+}
+
+.app__photo-grid-img--overlay {
+  background: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.app__photo-grid-img--overlay-title {
+  color: var(--white);
+  font-size: 1.6rem;
+}
+
+.app__photo-grid-img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s;
+}
+
+@media screen and (min-width: 768px) {
+  .app__header-logo {
+    max-width: 30rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .app__form-container,
+  .app__tags-container {
+    max-width: 40rem;
   }
 }
+
+/* 
+what i want to have:
+1. pagination buttons
+   to count it, 
+    1. photos.length / per page 
+       120 / 12 
+       10 
+         
+2. render 12 photo per page for each pagination
+3.  
+
+
+*/
